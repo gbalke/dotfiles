@@ -1,7 +1,6 @@
 
 filetype off                  " required
 
-colorscheme monokai
 
 set tabstop=4 softtabstop=0 noexpandtab shiftwidth=4
 
@@ -16,9 +15,13 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
+Plugin 'flazz/vim-colorschemes'
+
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+
+Bundle "myusuf3/numbers.vim"
 " The following are examples of different formats supported.
 
 " All of your Plugins must be added before the following line
@@ -44,6 +47,8 @@ let g:airline_theme='jellybeans'
 "'base16_monokai'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
+
+colorscheme molokai
 
 set laststatus=2
 set ttimeoutlen=50
