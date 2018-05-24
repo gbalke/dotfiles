@@ -1,8 +1,8 @@
+set tabstop=4 softtabstop=0 expandtab shiftwidth=2 smarttab
+
+autocmd FileType make set local noexpandtab
 
 filetype off                  " required
-
-
-set tabstop=4 softtabstop=0 noexpandtab shiftwidth=4
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -56,6 +56,10 @@ set ttimeoutlen=50
 if !exists('g:airline_symbols')
 	let g:airline_symbols = {}
 endif
+
+let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+let g:ycm_server_keep_logfiles = 1
+let g:ycm_server_log_level = 'debug'
 
 " unicode symbols
 let g:airline_left_sep = '»'
