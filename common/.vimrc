@@ -1,8 +1,24 @@
+"""" vundle install
+let fresh_install=0
+let vundle_readme=expand('~/.vim/bundle/Vundle.vim/README.md')
+if !filereadable(vundle_readme)
+    echo "Installing Vundle.."
+    echo ""
+    silent !mkdir -p ~/.vim/bundle
+    silent !git clone https://github.com/VundleVim/Vundle.vim ~/.vim/bundle/Vundle.vim
+    let fresh_install=1
+endif
+
 set tabstop=4 softtabstop=0 expandtab shiftwidth=2 smarttab
 
 autocmd FileType make set local noexpandtab
 
 filetype off                  " required
+
+" Save last position of cursor!
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+endif
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -20,6 +36,8 @@ Plugin 'flazz/vim-colorschemes'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+
+Plugin 'Yggdroot/indentLine'
 
 Bundle "myusuf3/numbers.vim"
 " The following are examples of different formats supported.
@@ -42,24 +60,30 @@ filetype plugin indent on    " required
 " Force syntax highlighting
 au BufReadPost *.tex set syntax=context
 
-" air-line
-let g:airline_theme='jellybeans'
-"'base16_monokai'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
-
 colorscheme molokai
 
 set laststatus=2
 set ttimeoutlen=50
 
-if !exists('g:airline_symbols')
-	let g:airline_symbols = {}
-endif
-
+""" You Complete Me
 let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
 let g:ycm_server_keep_logfiles = 1
 let g:ycm_server_log_level = 'debug'
+
+""" Tab dots
+let g:indentLine_char = '·'
+let g:indentLine_fileTypeExclude = ['json', 'markdown']
+let g:indentLine_color_term=237
+
+""" air-line
+let g:airline_theme='jellybeans'
+"'base16_monokai'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+
+if !exists('g:airline_symbols')
+	let g:airline_symbols = {}
+endif
 
 " unicode symbols
 let g:airline_left_sep = '»'

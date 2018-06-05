@@ -1,0 +1,24 @@
+#!/bin/bash
+
+xrandr --output eDP1 --primary
+xrandr --dpi 150
+
+feh  --bg-scale /home/greg/Pictures/background.png &
+
+compton &
+
+[[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
+
+if [ -x /usr/bin/nm-applet ] ; then
+	nm-applet --sm-disable &
+fi
+    
+if [ -x /usr/bin/gnome-power-manager ] ; then
+	sleep 3
+	gnome-power-manager &
+fi
+
+blueman-applet &
+
+exec i3
+
