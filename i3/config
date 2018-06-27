@@ -145,6 +145,7 @@ bindsym $mod+r mode "resize"
 # Media Controls
 bindsym XF86AudioRaiseVolume exec "amixer -D pulse sset Master 2%+"
 bindsym XF86AudioLowerVolume exec "amixer -D pulse sset Master 2%-"
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
 # Backlight Controls
 bindsym XF86MonBrightnessUp exec "xbacklight -inc 5%"
