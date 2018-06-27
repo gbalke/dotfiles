@@ -1,5 +1,7 @@
 #!/bin/bash
 
+setxkbmap -option caps:escape
+
 xrandr --output eDP1 --primary
 xrandr --dpi 150
 

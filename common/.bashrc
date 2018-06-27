@@ -18,8 +18,11 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=-1
-HISTFILESIZE=2000
+# HISTSIZE=-1
+# HISTFILESIZE=2000
+# Unlimited history!
+HISTSIZE=
+HISTFILESIZE=
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -119,3 +122,4 @@ if ! shopt -oq posix; then
 fi
 
 source /opt/ros/kinetic/setup.bash
+source ~/research/blue_ws/devel/setup.bash
