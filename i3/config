@@ -154,6 +154,10 @@ bindsym XF86MonBrightnessDown exec "xbacklight -dec 5%"
 # Screen Lock
 bindsym $mod+Shift+z exec "xbacklight -set 2%; gnome-screensaver-command --lock"
 
+# Screenshot to clipboard
+bindsym Print --release exec "scrot -s /tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
+bindsym Shift+Print exec "scrot /tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
