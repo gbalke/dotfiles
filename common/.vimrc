@@ -20,6 +20,9 @@ if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 endif
 
+" set vim to chdir for each file
+autocmd BufEnter * silent! lcd %:p:h
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 set guifont=Liberation\ Mono\ for\ Powerline\ Regular\ 10
@@ -59,6 +62,10 @@ filetype plugin indent on    " required
 
 " Force syntax highlighting
 au BufReadPost *.tex set syntax=context
+
+" Extra Whitespace highlighting
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+\%#\@<!$/
 
 colorscheme molokai
 
