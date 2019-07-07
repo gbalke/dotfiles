@@ -101,8 +101,9 @@ if ! shopt -oq posix; then
 fi
 
 # Adding ROS to path
-source /opt/ros/kinetic/setup.bash
+source /opt/ros/melodic/setup.bash
 # Setting up blue ROS workspace
 source ~/research/blue_ws/devel/setup.bash
 # Adding golang to path
 export PATH=$PATH:/usr/lib/go-1.10/bin
+export PATH=$PATH:$HOME/.local/bin

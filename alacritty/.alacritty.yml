@@ -49,7 +49,7 @@ window:
   # Values for `decorations` (macOS only):
   #     - transparent: Title bar, transparent background and title bar buttons
   #     - buttonless: Title bar, transparent background, but no title bar buttons
-  decorations: true
+  decorations: full
 
   # Startup Mode (changes require restart)
   #
@@ -60,17 +60,7 @@ window:
   #
   # Values for `startup_mode` (macOS only):
   #   - SimpleFullscreen
-  startup_mode: Fullscreen
-
-  # Window title
-  #title: Alacritty
-
-  # Window class (Linux only):
-  class:
-    # Application instance name
-    instance: Alacritty
-    # General application class
-    general: Alacritty
+  startup_mode: Windowed
 
   # GTK theme variant (Linux only)
   #
@@ -146,7 +136,7 @@ font:
     #style: Italic
 
   # Point size
-  size: 6.0
+  size: 11.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
