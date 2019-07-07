@@ -41,6 +41,12 @@ sudo add-apt-repository ppa:team-gcc-arm-embedded/ppa
 sudo apt-get update
 sudo apt-get install gcc-arm-none-eabi openocd
 
+# Chrome install
+sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+sudo apt-get update
+sudo apt-get install google-chrome-stable
+
 curl https://bootstrap.pypa.io/get-pip.py -o /tmp/get-pip.py
 python3 /tmp/get-pip.py
 
