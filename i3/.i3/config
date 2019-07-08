@@ -162,5 +162,6 @@ bindsym Shift+Print exec "scrot /tmp/screenshot-$(date +%F_%T).png -e 'xclip -se
 # finds out, if available)
 bar {
         status_command i3status
+        font pango:Hack, FontAwesome 10
         tray_output primary 
 }

@@ -14,13 +14,19 @@ if ! (fc-list | grep -qi powerline); then
   rm -rf $FONTS
 fi
 
+# Installing font awesome fonts for i3 status bar
+if ! (fc-list | grep -qi NerdFonts); then
+  git clone https://github.com/ryanoasis/nerd-fonts.git $FONTS
+  bash $FONTS/install.sh
+  rm -rf $FONTS
+fi
+
 echo
 echo "Installing baseline apps"
 sudo apt install\
   curl\
   vim\
   tmux\
-  i3\
   python3\
   python3-setuptools\
   compton\
@@ -55,6 +61,14 @@ if ! grep -q "dl.google.com/linux/chrome/deb/" /etc/apt/sources.list.d/*; then
   wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
 fi
 
+# So is i3
+if ! grep -q "debian.sur5r.net/i3/" /etc/apt/sources.list.d/*; then
+  /usr/lib/apt/apt-helper download-file http://debian.sur5r.net/i3/pool/main/s/sur5r-keyring/sur5r-keyring_2019.02.01_all.deb /tmp/keyring.deb SHA256:176af52de1a976f103f9809920d80d02411ac5e763f695327de9fa6aff23f416
+  sudo dpkg -i /tmp/keyring.deb
+  sudo sh -c 'echo "deb http://debian.sur5r.net/i3/ $(grep '^DISTRIB_CODENAME=' /etc/lsb-release | cut -f2 -d=) universe" >> /etc/apt/sources.list.d/sur5r-i3.list'
+fi
+
+
 sudo apt-get update
 
 sudo apt install\
@@ -62,13 +76,16 @@ sudo apt install\
   gcc make\
   kicad\
   gcc-arm-none-eabi openocd\
-  google-chrome-stable
+  google-chrome-stable\
+  i3
 
-echo
-echo "Installing pip"
-curl https://bootstrap.pypa.io/get-pip.py -o $HOME/get-pip.py
-python3 $HOME/get-pip.py --user
-rm $HOME/get-pip.py
+if ! hash pip 2>/dev/null; then
+  echo
+  echo "Installing pip"
+  curl https://bootstrap.pypa.io/get-pip.py -o $HOME/get-pip.py
+  python3 $HOME/get-pip.py --user
+  rm $HOME/get-pip.py
+fi
 
 echo
 echo "Linking dot files"

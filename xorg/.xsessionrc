@@ -3,9 +3,8 @@
 setxkbmap -option caps:escape
 
 xrandr --output eDP1 --primary
-xrandr --dpi 150
 
-feh --bg-scale /home/greg/Pictures/background.png &
+feh --bg-scale $HOME/Pictures/background.png &
 
 compton &
 
