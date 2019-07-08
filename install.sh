@@ -32,7 +32,9 @@ sudo apt install\
   blueman\
   feh\
   exfat-fuse\
-  exfat-utils
+  exfat-utils\
+  gnome-screensaver\
+  scrot\
 
 echo
 echo "Adding package repos"
