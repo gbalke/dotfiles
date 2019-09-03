@@ -18,8 +18,6 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-# HISTSIZE=-1
-# HISTFILESIZE=2000
 # Unlimited history!
 HISTSIZE=
 HISTFILESIZE=
@@ -100,10 +98,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# Adding ROS to path
-source /opt/ros/melodic/setup.bash
-# Setting up blue ROS workspace
-source ~/research/blue_ws/devel/setup.bash
-# Adding golang to path
-export PATH=$PATH:/usr/lib/go-1.10/bin
 export PATH=$PATH:$HOME/.local/bin
+
+source $HOME/.bash_local

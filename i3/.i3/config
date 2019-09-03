@@ -152,7 +152,7 @@ bindsym XF86MonBrightnessUp exec "xbacklight -inc 5%"
 bindsym XF86MonBrightnessDown exec "xbacklight -dec 5%"
 
 # Screen Lock
-bindsym $mod+Shift+z exec "xbacklight -set 2%; gnome-screensaver-command --lock"
+bindsym $mod+Shift+z exec "i3lock -c000000 -e -f -i ~/Pictures/background.png"
 
 # Screenshot to clipboard
 bindsym Print --release exec "scrot -s /tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"

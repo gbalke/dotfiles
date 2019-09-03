@@ -28,37 +28,39 @@ set rtp+=~/.vim/bundle/Vundle.vim
 set guifont=Liberation\ Mono\ for\ Powerline\ Regular\ 10
 
 call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-
 Plugin 'flazz/vim-colorschemes'
 
-Plugin 'Valloric/YouCompleteMe'
+" Includes YCM underneath
+Plugin 'zxqfl/tabnine-vim'
+
+" Fancy footer/header
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+
+Plugin 'ludovicchabant/vim-gutentags'
+Plugin 'vim-scripts/TagHighlight'
+Plugin 'itchyny/vim-cursorword'
+Plugin 'sheerun/vim-polyglot'
+
+" Expanding directory navigation
+Plugin 'scrooloose/nerdtree'
+
+" Auto-search directories
+Plugin 'kien/ctrlp.vim'
 
 Plugin 'Yggdroot/indentLine'
 
 Bundle "myusuf3/numbers.vim"
 " The following are examples of different formats supported.
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
+" " install plugins
+if fresh_install == 1
+    PluginInstall
+endif
+call vundle#end()
 
 " Force syntax highlighting
 au BufReadPost *.tex set syntax=context
@@ -72,6 +74,39 @@ colorscheme molokai
 set laststatus=2
 set ttimeoutlen=50
 set scrolloff=5
+
+syntax on
+
+set path+=**
+set wildmenu
+set wildmode=longest:full,full
+
+"""" arrow key remapping
+nmap <silent> <Up> :exe "resize +5"<CR>
+nmap <silent> <Down> :exe "resize -5"<CR>
+nmap <silent> <Right> :exe "vert resize +5"<CR>
+nmap <silent> <Left> :exe "vert resize -5"<CR>
+set mouse=
+
+""" NERDTree
+nnoremap ,, :NERDTree<Return>
+let g:NERDTreeShowHidden=1
+let g:NERDTreeShowLineNumbers=1
+autocmd FileType nerdtree setlocal relativenumber
+let g:NERDTreeFileExtensionHighlightFullName = 1
+let g:NERDTreeExactMatchHighlightFullName = 1
+let g:NERDTreePatternMatchHighlightFullName = 1
+let g:NERDSpaceDelims = 1
+let g:NERDCompactSexyComs = 1
+let g:NERDCommentEmptyLines = 1
+let g:NERDTrimTrailingWhitespace = 1
+let g:NERDDefaultAlign = 'left'
+
+""" Gutentags
+let g:gutentags_cache_dir = '~/.cache/tags'
+
+""" Ctrl+P
+let g:ctrlp_working_path_mode = 'ra'
 
 """ You Complete Me
 let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'

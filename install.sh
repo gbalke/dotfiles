@@ -39,8 +39,8 @@ sudo apt install\
   feh\
   exfat-fuse\
   exfat-utils\
-  gnome-screensaver\
   scrot\
+  ctags\
 
 echo
 echo "Adding package repos"
@@ -83,6 +83,7 @@ if ! hash pip 2>/dev/null; then
   echo
   echo "Installing pip"
   curl https://bootstrap.pypa.io/get-pip.py -o $HOME/get-pip.py
+  python $HOME/get-pip.py --user
   python3 $HOME/get-pip.py --user
   rm $HOME/get-pip.py
 fi
@@ -96,6 +97,12 @@ stow -v vim\
         xorg\
         i3\
         git\
-        alacritty
+        alacritty\
+        thunar
+
+if ! (ls -a $HOME | grep -qi .bash_local); then
+  touch $HOME/.bash_local
+  cat "#!/bin/bash \n # Add extra setup here!" >> $HOME/.bash_local
+fi
 
 source $HOME/.bashrc
