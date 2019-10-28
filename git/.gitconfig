@@ -1,3 +1,6 @@
 [user]
-	email = gbalke@berkeley.edu
-	name = Greg Balke
+  email = gbalke@berkeley.edu
+  name = Greg Balke
+
+[core]
+  editor=vim

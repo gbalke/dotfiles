@@ -15,7 +15,7 @@ autocmd FileType make set local noexpandtab
 
 filetype off                  " required
 
-" Save last position of cursor!
+" Save last position of cursor! (reloads when next opening the file)
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 endif
@@ -25,12 +25,14 @@ autocmd BufEnter * silent! lcd %:p:h
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
-set guifont=Liberation\ Mono\ for\ Powerline\ Regular\ 10
+set guifont=Liberation\ Mono\ for\ Powerline\ Regular\ 10"
 
 call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
+
+" Fancy text colors
 Plugin 'flazz/vim-colorschemes'
 
 " Includes YCM underneath
@@ -40,10 +42,20 @@ Plugin 'zxqfl/tabnine-vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 
+" Automated ctags generation for hopping around!
 Plugin 'ludovicchabant/vim-gutentags'
+
+" Highlights key words (from ctags)
 Plugin 'vim-scripts/TagHighlight'
+
+" Underline word under cursor
 Plugin 'itchyny/vim-cursorword'
+
+" Many language syntax support!
 Plugin 'sheerun/vim-polyglot'
+
+" History exploration
+Plugin 'sjl/gundo.vim'
 
 " Expanding directory navigation
 Plugin 'scrooloose/nerdtree'
@@ -51,10 +63,11 @@ Plugin 'scrooloose/nerdtree'
 " Auto-search directories
 Plugin 'kien/ctrlp.vim'
 
+" Puts dots for spaces (indent)
 Plugin 'Yggdroot/indentLine'
 
+" Relative vs absolute line counts
 Bundle "myusuf3/numbers.vim"
-" The following are examples of different formats supported.
 
 " " install plugins
 if fresh_install == 1
@@ -74,6 +87,8 @@ colorscheme molokai
 set laststatus=2
 set ttimeoutlen=50
 set scrolloff=5
+" auto indent enable
+set ai
 
 syntax on
 
@@ -86,7 +101,6 @@ nmap <silent> <Up> :exe "resize +5"<CR>
 nmap <silent> <Down> :exe "resize -5"<CR>
 nmap <silent> <Right> :exe "vert resize +5"<CR>
 nmap <silent> <Left> :exe "vert resize -5"<CR>
-set mouse=
 
 """ NERDTree
 nnoremap ,, :NERDTree<Return>
@@ -103,15 +117,15 @@ let g:NERDTrimTrailingWhitespace = 1
 let g:NERDDefaultAlign = 'left'
 
 """ Gutentags
-let g:gutentags_cache_dir = '~/.cache/tags'
+let g:gutentags_ctags_tagfile = '.git/tags'
+" let g:gutentags_cache_dir = '~/.cache/tags'
 
 """ Ctrl+P
-let g:ctrlp_working_path_mode = 'ra'
-
-""" You Complete Me
-let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
-let g:ycm_server_keep_logfiles = 1
-let g:ycm_server_log_level = 'debug'
+"let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+if executable('ag')
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
 
 """ Tab dots
 let g:indentLine_char = '·'
@@ -120,7 +134,6 @@ let g:indentLine_color_term=237
 
 """ air-line
 let g:airline_theme='jellybeans'
-"'base16_monokai'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 
