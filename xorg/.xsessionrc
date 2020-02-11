@@ -6,19 +6,12 @@ xrandr --output eDP1 --primary
 
 feh --bg-scale $HOME/Pictures/background.png &
 
-compton &
-
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
 
 if [ -x /usr/bin/nm-applet ] ; then
 	nm-applet --sm-disable &
 fi
     
-if [ -x /usr/bin/gnome-power-manager ] ; then
-	sleep 3
-	gnome-power-manager &
-fi
-
 blueman-applet &
 
 exec i3
