@@ -9,9 +9,12 @@ if !filereadable(vundle_readme)
     let fresh_install=1
 endif
 
+"""" tab management
 set tabstop=4 softtabstop=0 expandtab shiftwidth=2 smarttab
+"" extra tabs for python
+autocmd FileType python setlocal shiftwidth=4 softtabstop=4 expandtab
 
-autocmd FileType make set local noexpandtab
+autocmd FileType make setlocal noexpandtab
 
 filetype off                  " required
 
@@ -82,6 +85,11 @@ au BufReadPost *.tex set syntax=context
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+\%#\@<!$/
 
+" Over line count coloring
+highlight ColorColumn ctermbg=red guibg=red
+"call matchadd('ColorColumn', '\%80v', 100)
+set colorcolumn=80
+
 colorscheme molokai
 
 set laststatus=2
@@ -118,6 +126,10 @@ let g:NERDDefaultAlign = 'left'
 
 """ Gutentags
 let g:gutentags_ctags_tagfile = '.git/tags'
+let g:gutentags_ctags_extra_args = [
+    \ '--tag-relative=yes',
+    \ '--fields=+ailmnS',
+    \ ]
 " let g:gutentags_cache_dir = '~/.cache/tags'
 
 """ Ctrl+P
