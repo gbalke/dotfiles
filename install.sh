@@ -89,7 +89,11 @@ if ! hash pip 2>/dev/null; then
 fi
 
 echo
-echo "Linking dot files"
+echo "Creating bin directory"
+mkdir -p $HOME/bin
+
+echo
+echo "Linking dot files and bin directory"
 cd $DOTFILES
 stow -v vim\
         bash\
@@ -98,7 +102,8 @@ stow -v vim\
         i3\
         git\
         alacritty\
-        thunar
+        thunar\
+        bin
 
 if ! (ls -a $HOME | grep -qi .bash_local); then
   touch $HOME/.bash_local
