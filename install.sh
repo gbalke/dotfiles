@@ -24,23 +24,27 @@ fi
 echo
 echo "Installing baseline apps"
 sudo apt install\
-  curl\
-  vim\
-  tmux\
-  python3\
-  python3-setuptools\
-  compton\
-  htop\
-  pavucontrol\
-  thunar\
-  xbacklight\
-  stow\
+  autorandr\
   blueman\
-  feh\
+  ctags\
+  curl\
+  htop\
   exfat-fuse\
   exfat-utils\
+  feh\
+  pavucontrol\
+  python3\
+  python3-setuptools\
   scrot\
-  ctags\
+  stow\
+  thunar\
+  tmux\
+  vim\
+  xbacklight\
+
+echo
+echo "Saving current monitor setup"
+autorandr -s default
 
 echo
 echo "Adding package repos"
@@ -63,11 +67,12 @@ fi
 
 # So is i3
 if ! grep -q "debian.sur5r.net/i3/" /etc/apt/sources.list.d/*; then
-  /usr/lib/apt/apt-helper download-file http://debian.sur5r.net/i3/pool/main/s/sur5r-keyring/sur5r-keyring_2019.02.01_all.deb /tmp/keyring.deb SHA256:176af52de1a976f103f9809920d80d02411ac5e763f695327de9fa6aff23f416
+  KEYRING=https://debian.sur5.net/i3/pool/main/s/sur5r-keyring/
+  DEB="$(curl $KEYRING | sed -n -e 's/\(.*href=\"\)\(.*deb\)\(\".*\)/\2/p')"
+  wget $KEYRING$DEB -o /tmp/keyring.deb
   sudo dpkg -i /tmp/keyring.deb
   sudo sh -c 'echo "deb http://debian.sur5r.net/i3/ $(grep '^DISTRIB_CODENAME=' /etc/lsb-release | cut -f2 -d=) universe" >> /etc/apt/sources.list.d/sur5r-i3.list'
 fi
-
 
 sudo apt-get update
 

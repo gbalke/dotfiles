@@ -2,7 +2,7 @@
 
 setxkbmap -option caps:escape
 
-xrandr --output eDP1 --primary
+autorandr
 
 feh --bg-scale $HOME/Pictures/background.png &
 
