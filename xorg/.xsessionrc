@@ -2,7 +2,7 @@
 
 setxkbmap -option caps:escape
 
-autorandr
+autorandr -c
 
 feh --bg-scale $HOME/Pictures/background.png &
 

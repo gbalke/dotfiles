@@ -148,11 +148,12 @@ bindsym XF86AudioLowerVolume exec "amixer -D pulse sset Master 2%-"
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
 # Backlight Controls
-bindsym XF86MonBrightnessUp exec "xbacklight -inc 5%"
-bindsym XF86MonBrightnessDown exec "xbacklight -dec 5%"
+bindsym XF86MonBrightnessUp exec "brightnessctl set +2%"
+bindsym XF86MonBrightnessDown exec "brightnessctl set 2%- -n 1"
 
 # Screen Lock
 bindsym $mod+Shift+z exec "i3lock -c000000 -e -f -i ~/Pictures/background.png"
+bindsym $mod+Control+Shift+z exec "i3lock -c000000 -e -f -i ~/Pictures/background.png; systemctl suspend"
 
 # Screenshot to clipboard
 bindsym Print --release exec "scrot -s /tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"

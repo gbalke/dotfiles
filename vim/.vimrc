@@ -72,11 +72,22 @@ Plugin 'Yggdroot/indentLine'
 " Relative vs absolute line counts
 Bundle "myusuf3/numbers.vim"
 
+" Add maktaba and codefmt to the runtimepath.
+" (The latter must be installed before it can be used.)
+Plugin 'google/vim-maktaba'
+Plugin 'google/vim-codefmt'
+" Also add Glaive, which is used to configure codefmt's maktaba flags. See
+" `:help :Glaive` for usage.
+Plugin 'google/vim-glaive'
+
 " " install plugins
 if fresh_install == 1
     PluginInstall
 endif
 call vundle#end()
+
+" the glaive#Install() should go after the "call vundle#end()"
+call glaive#Install()
 
 " Force syntax highlighting
 au BufReadPost *.tex set syntax=context

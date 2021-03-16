@@ -85,7 +85,8 @@ function dev_apps {
   echo
   echo "Adding package repos"
   declare -a ppa_list=("mmstick76/alacritty"\
-                       "js-reynaud/kicad-5.1"\
+                       "kicad/kicad-5.1-releases"\
+                       "kicad/kicad-dev-nightly"\
                        "team-gcc-arm-embedded/ppa")
 
   for the_ppa in "${ppa_list[@]}"
