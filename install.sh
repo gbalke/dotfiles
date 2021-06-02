@@ -74,6 +74,7 @@ function base_apps {
     tmux\
     vim\
     xbacklight\
+    playerctl\
 
 }
 
@@ -125,7 +126,6 @@ function dev_apps {
     echo
     echo "Installing pip"
     curl https://bootstrap.pypa.io/get-pip.py -o /tmp/get-pip.py
-    python /tmp/get-pip.py --user
     python3 /tmp/get-pip.py --user
     rm /tmp/get-pip.py
   fi
