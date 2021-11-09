@@ -38,8 +38,8 @@ Plugin 'VundleVim/Vundle.vim'
 " Fancy text colors
 Plugin 'flazz/vim-colorschemes'
 
-" Includes YCM underneath
-Plugin 'zxqfl/tabnine-vim'
+" Fancy autocomplete
+Plugin 'tabnine/YouCompleteMe'
 
 " Fancy footer/header
 Plugin 'vim-airline/vim-airline'
@@ -76,6 +76,10 @@ Bundle "myusuf3/numbers.vim"
 " (The latter must be installed before it can be used.)
 Plugin 'google/vim-maktaba'
 Plugin 'google/vim-codefmt'
+
+" Formatting for web formats
+Plugin 'prettier/vim-prettier'
+
 " Also add Glaive, which is used to configure codefmt's maktaba flags. See
 " `:help :Glaive` for usage.
 Plugin 'google/vim-glaive'
@@ -120,6 +124,9 @@ nmap <silent> <Up> :exe "resize +5"<CR>
 nmap <silent> <Down> :exe "resize -5"<CR>
 nmap <silent> <Right> :exe "vert resize +5"<CR>
 nmap <silent> <Left> :exe "vert resize -5"<CR>
+
+let g:ycm_confirm_extra_conf = 0
+let g:ycm_show_diagnostics_ui = 0
 
 """ NERDTree
 nnoremap ,, :NERDTree<Return>
