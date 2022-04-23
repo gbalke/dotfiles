@@ -59,11 +59,9 @@ function base_apps {
   sudo apt install\
     autorandr\
     blueman\
-    ctags\
+    universal-ctags\
     curl\
     htop\
-    exfat-fuse\
-    exfat-utils\
     feh\
     pavucontrol\
     python3\
@@ -75,7 +73,10 @@ function base_apps {
     vim\
     xbacklight\
     playerctl\
-
+    i3\
+    gcc make\
+    gcc-arm-none-eabi\
+    openocd
 }
 
 function dev_apps {
@@ -85,10 +86,7 @@ function dev_apps {
 
   echo
   echo "Adding package repos"
-  declare -a ppa_list=("mmstick76/alacritty"\
-                       "kicad/kicad-5.1-releases"\
-                       "kicad/kicad-dev-nightly"\
-                       "team-gcc-arm-embedded/ppa")
+  declare -a ppa_list=("ppa:kicad/kicad-6.0-releases")
 
   for the_ppa in "${ppa_list[@]}"
   do
@@ -97,30 +95,10 @@ function dev_apps {
     fi
   done
 
-  # Chrome is annoying for packages
-  if ! grep -q "dl.google.com/linux/chrome/deb/" /etc/apt/sources.list.d/*; then
-    sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
-    wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-  fi
-
-  # So is i3
-  if ! grep -q "debian.sur5r.net/i3/" /etc/apt/sources.list.d/*; then
-    KEYRING=https://debian.sur5.net/i3/pool/main/s/sur5r-keyring/
-    DEB="$(curl $KEYRING | sed -n -e 's/\(.*href=\"\)\(.*deb\)\(\".*\)/\2/p')"
-    wget $KEYRING$DEB -o /tmp/keyring.deb
-    sudo dpkg -i /tmp/keyring.deb
-    sudo sh -c 'echo "deb http://debian.sur5r.net/i3/ $(grep '^DISTRIB_CODENAME=' /etc/lsb-release | cut -f2 -d=) universe" >> /etc/apt/sources.list.d/sur5r-i3.list'
-  fi
-
   sudo apt-get update
 
   sudo apt install\
-    alacritty\
-    gcc make\
-    kicad\
-    gcc-arm-none-eabi openocd\
-    google-chrome-stable\
-    i3
+    kicad
 
   if ! hash pip 2>/dev/null; then
     echo
