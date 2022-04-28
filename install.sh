@@ -134,6 +134,8 @@ function dotfiles {
   fi
   source $HOME/.bashrc
 
+  echo "Enabling service for kanshi"
+  systemctl --user enable kanshi
 }
 
 function run {
