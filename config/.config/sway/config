@@ -152,8 +152,9 @@ bindsym XF86MonBrightnessUp exec "brightnessctl set +2%"
 bindsym XF86MonBrightnessDown exec "brightnessctl set 2%- -n 1"
 
 # Screen Lock
-bindsym $mod+Shift+z exec "i3lock -c000000 -e -f -i ~/Pictures/background.png"
-bindsym $mod+Control+Shift+z exec "i3lock -c000000 -e -f -i ~/Pictures/background.png; systemctl suspend"
+bindsym $mod+Shift+z exec "swaylock -c000000 -e -f -i ~/Pictures/background.png"
+bindsym $mod+Control+Shift+z exec "swaylock -c000000 -e -f -i ~/Pictures/background.png; systemctl suspend"
+#bindsym $mod+Control+Shift+z exec "wlogout"
 
 # Screenshot to clipboard
 bindsym Print --release exec "scrot -s /tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"

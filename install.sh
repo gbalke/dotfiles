@@ -57,7 +57,6 @@ function base_apps {
   echo
   echo "Installing baseline apps"
   sudo apt install\
-    autorandr\
     blueman\
     universal-ctags\
     curl\
@@ -71,19 +70,19 @@ function base_apps {
     thunar\
     tmux\
     vim\
-    xbacklight\
     playerctl\
-    i3\
     gcc make\
     gcc-arm-none-eabi\
-    openocd
+    openocd\
+
+  # Windows manager apps
+  sudo apt install\
+    kanshi\
+    wlogout\
+    swaylock
 }
 
 function dev_apps {
-  echo
-  echo "Saving current monitor setup"
-  autorandr -s default
-
   echo
   echo "Adding package repos"
   declare -a ppa_list=("ppa:kicad/kicad-6.0-releases")
@@ -121,8 +120,8 @@ function dotfiles {
   cd $DOTFILES
   stow -v vim\
           bash\
+          config\
           tmux\
-          xorg\
           i3\
           git\
           alacritty\
