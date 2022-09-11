@@ -64,7 +64,8 @@ Plugin 'sjl/gundo.vim'
 Plugin 'scrooloose/nerdtree'
 
 " Auto-search directories
-Plugin 'kien/ctrlp.vim'
+Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plugin 'junegunn/fzf.vim'
 
 " Puts dots for spaces (indent)
 Plugin 'Yggdroot/indentLine'
@@ -150,12 +151,8 @@ let g:gutentags_ctags_extra_args = [
     \ ]
 " let g:gutentags_cache_dir = '~/.cache/tags'
 
-""" Ctrl+P
-"let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
-if executable('ag')
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-endif
+""" Fzf (replaced Ctrl-P)
+nmap <C-P> :GFiles<CR>
 
 """ Tab dots
 let g:indentLine_char = '·'
